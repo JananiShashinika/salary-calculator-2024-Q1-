@@ -121,17 +121,12 @@ export default function CalculateForm() {
           </div>
 
           <div className='earnings-input'>
-        {/* <input type="text" value={travel} onChange={(e) => setTravel(e.target.value)} placeholder='Travel'/>
-        <input type="number" name="amount"/>
-        <button  >X</button>
-        <button type="checkbox" ></button>
-        <label>EPF/ETF</label> */}
       
             {earnings.map((earning,index) =>(
                 <div className='earnings-input' key={index}>
                     <input type="text" name="title" value={earning.title} onChange={(event) => handleEarningChange(index, event)} placeholder="Pay Details (Title)"/>
                     <input type="number" name="amount" value={earning.amount}  onChange={(event) => handleEarningChange(index, event)} placeholder="Amount"/>  
-                    <button type="close">X</button> 
+                    <button type="button" onClick={() => setEarnings(deductions.filter((_, i) => i !== index))}>X</button> 
                     <label>
                       <input type="checkbox"/>
                     EPF/ETF
@@ -144,13 +139,6 @@ export default function CalculateForm() {
         </div>
         
       <br/>
-
-      {/* <div>
-        <label>EPF/ETF</label> */}
-        {/* <p>Pay Details (Title)</p>
-        <input type="text" placeholder="Title" /> */}
-        {/* <input type="number" placeholder="Amount" /> */}
-      {/* </div> */}
 
       <div >
         <div className='deductions'>
@@ -170,12 +158,7 @@ export default function CalculateForm() {
         <button className='button' type="link" onClick={addDeduction}>+ Add New Deduction</button>  
       </div>
 
-      {/* <div>
-        <label>No Pay</label>
-        <input type="number" value={noPay} onChange={(e) => setNoPay(e.target.value)}/>
-      </div> */}
-
-      {/* <button type="submit">Calculate</button> */}
+  
       </form>        
     );
 }
