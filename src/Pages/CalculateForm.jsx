@@ -8,7 +8,7 @@ export default function CalculateForm() {
     const [deductions, setDeductions] = useState([{ title: '', amount: '' }]);
     const [results, setResults] = useState(null);
 
-    
+
     const handleEarningChange = (index,event) => {
         const newEarnings = earnings.map((earning,i) =>{
             if(i === index) {
@@ -46,7 +46,7 @@ export default function CalculateForm() {
           };
           
           const calculateGrossDeduction = (deductions) => {
-            return deductions.reduce((total, deduction) => total + deduction.amount, 0);
+            return deductions.reduce((total, deduction) => total + parseFloat(deduction.amount || 0), 0);
           };
           
           const calculateGrossEarnings = (totalEarnings, grossDeduction) => {
@@ -81,14 +81,26 @@ export default function CalculateForm() {
             return grossEarnings + employerEPF + employerETF;
           };
           
-
-
-
           const handleSubmit = (event) => {
             event.preventDefault();
-//Form submission
-          };
+            // Perform calculations
+            const totalEarnings = calculateTotalEarnings(parseFloat(basicSalary), earnings);
+            const totalEarningsForEPF = calculateTotalEarningsForEPF(parseFloat(basicSalary), earnings);
+            const grossDeduction = calculateGrossDeduction(deductions);
+            const grossEarnings = calculateGrossEarnings(totalEarnings, grossDeduction);
+            const grossSalaryForEPF = calculateGrossSalaryForEPF(totalEarningsForEPF, grossDeduction);
+            const employeeEPF = calculateEmployeeEPF(grossSalaryForEPF);
+            const employerEPF = calculateEmployerEPF(grossSalaryForEPF);
+            const employerETF = calculateEmployerETF(grossSalaryForEPF);
+            const apit = calculateAPIT(grossEarnings);
+            const netSalary = calculateNetSalary(grossEarnings, employeeEPF, apit);
+            const ctc = calculateCTC(grossEarnings, employerEPF, employerETF);
 
+            setResults({
+              basicSalary,grossEarnings,grossDeduction,employeeEPF,apit,netSalary,employerEPF,employerETF,ctc
+            });
+          };
+          
 
 
 
@@ -166,5 +178,4 @@ export default function CalculateForm() {
       {/* <button type="submit">Calculate</button> */}
       </form>        
     );
-  }
 }

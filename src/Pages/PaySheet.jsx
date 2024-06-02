@@ -1,20 +1,28 @@
-import React,{useState } from 'react';
+import React from 'react';
 import './PaySheet.css';
-import './CalculateForm';
 
-export default function PaySheet() {
-    // const [basicSalary] = useState();
-    return(
-        <div className='h4 paySheet'>Your Salary
-        <table className='table'>
-            <thead>
-                <tr>
-                    <th>Items</th>
-                    <th>Amount</th>
-                </tr>
-            </thead>
-            <tbody>
-            <tr>
+export default function PaySheet({ results }) {
+    if (!results) {
+        return (
+            <div className='h4 paySheet'>
+                Your Salary
+                <p>Loading...</p>
+            </div>
+        );
+    }
+        
+    return (
+        <div className='h4 paySheet'>
+            Your Salary
+            <table className='table'>
+                <thead>
+                    <tr>
+                        <th>Items</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
                         <td>Basic Salary</td>
                         <td>{results.basicSalary}</td>
                     </tr>
