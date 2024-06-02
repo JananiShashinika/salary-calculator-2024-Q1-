@@ -1,0 +1,44 @@
+.paySheet{
+    width: 110px;
+    height: 32px;
+    top: 166px;
+    left: 856px;
+    gap: 0px;
+    opacity: 0px;
+
+}
+
+.paySheet h4{    
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 32px;
+    letter-spacing: -0.02199999988079071px;
+    text-align: left;
+
+}
+.paySheet table{
+    width: 424px;
+    height: 188px;
+    top: 223px;
+    left: 856px;
+    gap: 0px;
+    opacity: 0px;
+}
+.paySheet table thead{
+    font-size: smaller;
+    text-align:left;
+    color:#757575;
+}
+.paySheet table td{
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    text-decoration:  #000000;
+}
+.netSalary tr{
+    background-origin: padding-box;
+    border: #000000;
+}
